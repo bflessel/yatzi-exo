@@ -1,7 +1,7 @@
 package yatzyService;
 
+import entities.DiceSet;
 import org.junit.*;
-import yatzyService.Yatzy;
 
 import static org.junit.Assert.*;
 
@@ -10,9 +10,9 @@ public class YatzyTest {
     @Test
     public void chance_scores_sum_of_all_dice() {
         int expected = 15;
-        int actual = Yatzy.chance(2, 3, 4, 5, 1);
+        int actual = Yatzy.chance(new DiceSet(2, 3, 4, 5, 1));
         int expected2 = 16;
-        int actual2 = Yatzy.chance(3, 3, 4, 5, 1);
+        int actual2 = Yatzy.chance(new DiceSet(3, 3, 4, 5, 1));
         assertEquals(expected, actual);
         assertEquals(expected2, actual2);
     }

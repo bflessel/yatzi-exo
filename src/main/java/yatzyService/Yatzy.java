@@ -1,11 +1,11 @@
 package yatzyService;
 
-import java.util.stream.IntStream;
+import entities.DiceSet;
 
 public class Yatzy {
 
-    public static int chance(int d1, int d2, int d3, int d4, int d5) {
-        return IntStream.of(d1 , d2 , d3 , d4 , d5).sum();
+    public static int chance(DiceSet diceSet) {
+        return diceSet.getDices().stream().mapToInt(Integer::intValue).sum();
     }
 
     public static int yatzy(int... dice) {
