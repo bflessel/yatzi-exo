@@ -98,8 +98,8 @@ public class YatzyTest {
 
     @Test
     public void four_of_a_knd() {
-        assertEquals(12, Yatzy.four_of_a_kind(3, 3, 3, 3, 5));
-        assertEquals(20, Yatzy.four_of_a_kind(5, 5, 5, 4, 5));
+        assertEquals(12, Yatzy.calculateForOfAKindValue(new DiceSet(3, 3, 3, 3, 5)));
+        assertEquals(20, Yatzy.calculateForOfAKindValue(new DiceSet(5, 5, 5, 4, 5)));
     }
 
     @Test

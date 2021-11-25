@@ -32,13 +32,7 @@ public class Yatzy {
     }
 
     public static int calculatePairScore(DiceSet diceSet) {
-        Map<Integer, Long> sortedValues = getSortedValues(diceSet);
-
-        Integer pairValue = getPairValue(sortedValues, false, 2);
-        if (pairValue != null) {
-            return pairValue;
-        }
-        return 0;
+        return calculateAllRepetedValues(diceSet, false, 2);
     }
 
     private static Map<Integer, Long> getSortedValues(DiceSet diceSet) {
@@ -48,15 +42,19 @@ public class Yatzy {
     }
 
     public static int calculateDoublePairScore(DiceSet diceSet) {
+        return calculateAllRepetedValues(diceSet, true, 2);
+    }
+
+    private static int calculateAllRepetedValues(DiceSet diceSet, boolean multiples, int size) {
         Map<Integer, Long> sortedValues = getSortedValues(diceSet);
-        Integer pairValue = getPairValue(sortedValues, true, 2);
+        Integer pairValue = getRepetedValues(sortedValues, multiples, size);
         if (pairValue != null) {
             return pairValue;
         }
         return 0;
     }
 
-    private static Integer getPairValue(Map<Integer, Long> sortedValues, boolean multiple, int size) {
+    private static Integer getRepetedValues(Map<Integer, Long> sortedValues, boolean multiple, int size) {
         int count = 0;
         for (Integer diceValue : sortedValues.keySet()) {
             if (sortedValues.get(diceValue).intValue() >= size) {
@@ -71,30 +69,12 @@ public class Yatzy {
 
     }
 
-    public static int four_of_a_kind(int _1, int _2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[_1 - 1]++;
-        tallies[_2 - 1]++;
-        tallies[d3 - 1]++;
-        tallies[d4 - 1]++;
-        tallies[d5 - 1]++;
-        for (int i = 0; i < 6; i++) {
-            if (tallies[i] >= 4) {
-                return (i + 1) * 4;
-            }
-        }
-        return 0;
+    public static int calculateForOfAKindValue(DiceSet diceSet) {
+        return calculateAllRepetedValues(diceSet, true, 4);
     }
 
     public static int calculateThreeOfAKindValue(DiceSet diceSet) {
-        Map<Integer, Long> sortedValues = getSortedValues(diceSet);
-
-        Integer pairValue = getPairValue(sortedValues, true,3);
-        if (pairValue != null) {
-            return pairValue;
-        }
-        return 0;
+        return calculateAllRepetedValues(diceSet, true, 3);
     }
 
 
