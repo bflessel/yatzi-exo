@@ -12,25 +12,8 @@ public class Yatzy {
         return diceSet.getDices().stream().mapToInt(Integer::intValue).allMatch(Integer.valueOf(diceSet.getFirstDice())::equals) ? 50 : 0;
     }
 
-    public static int ones(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 1) {
-            sum++;
-        }
-        if (d2 == 1) {
-            sum++;
-        }
-        if (d3 == 1) {
-            sum++;
-        }
-        if (d4 == 1) {
-            sum++;
-        }
-        if (d5 == 1) {
-            sum++;
-        }
-
-        return sum;
+    public static int ones(DiceSet diceSet) {
+        return  Long.valueOf(diceSet.getDices().stream().mapToInt(Integer::intValue).filter(e -> e == 1).count()).intValue();
     }
 
     public static int twos(int d1, int d2, int d3, int d4, int d5) {
