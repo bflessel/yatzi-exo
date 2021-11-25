@@ -1,4 +1,4 @@
-package yatzyService;
+package yatzyservice;
 
 import entities.DiceSet;
 
@@ -8,9 +8,9 @@ public class Yatzy {
         return diceSet.getDices().stream().mapToInt(Integer::intValue).sum();
     }
 
-    public static int yatzy(int... dice) {
+    public static int yatzy(DiceSet diceSet) {
         int[] counts = new int[6];
-        for (int die : dice) {
+        for (int die : diceSet.getDices()) {
             counts[die - 1]++;
         }
         for (int i = 0; i != 6; i++) {
