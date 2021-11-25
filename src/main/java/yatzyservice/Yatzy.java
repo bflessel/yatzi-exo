@@ -87,20 +87,24 @@ public class Yatzy {
         return 0;
     }
 
-    public static int three_of_a_kind(int d1, int d2, int d3, int d4, int d5) {
-        int[] t;
-        t = new int[6];
-        t[d1 - 1]++;
-        t[d2 - 1]++;
-        t[d3 - 1]++;
-        t[d4 - 1]++;
-        t[d5 - 1]++;
-        for (int i = 0; i < 6; i++) {
-            if (t[i] >= 3) {
-                return (i + 1) * 3;
-            }
+    public static int calculateThreeOfAKindValue(DiceSet diceSet) {
+        Map<Integer, Long> sortedValues = getSortedValues(diceSet);
+
+        Integer pairValue = getThreeOfAKindValue(sortedValues);
+        if (pairValue != null) {
+            return pairValue;
         }
         return 0;
+    }
+
+    private static Integer getThreeOfAKindValue(Map<Integer, Long> sortedValues) {
+        int count = 0;
+        for (Integer diceValue : sortedValues.keySet()) {
+            if (sortedValues.get(diceValue).intValue() >= 3) {
+                count += diceValue * 3;
+            }
+        }
+        return count;
     }
 
     public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
