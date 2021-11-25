@@ -35,16 +35,16 @@ public class YatzyTest {
 
     @Test
     public void player_score_one_points_by_each_dice_with_one() {
-        assertEquals(1, Yatzy.ones(new DiceSet(1, 2, 3, 4, 5)));
-        assertEquals(2, Yatzy.ones(new DiceSet(1, 2, 1, 4, 5)));
-        assertEquals(0, Yatzy.ones(new DiceSet(6, 2, 2, 4, 5)));
-        assertEquals(4, Yatzy.ones(new DiceSet(1, 2, 1, 1, 1)));
+        assertEquals(1, Yatzy.getDiceOneNumber(new DiceSet(1, 2, 3, 4, 5)));
+        assertEquals(2, Yatzy.getDiceOneNumber(new DiceSet(1, 2, 1, 4, 5)));
+        assertEquals(0, Yatzy.getDiceOneNumber(new DiceSet(6, 2, 2, 4, 5)));
+        assertEquals(4, Yatzy.getDiceOneNumber(new DiceSet(1, 2, 1, 1, 1)));
     }
 
     @Test
-    public void test_2s() {
-        assertEquals(4, Yatzy.twos(1, 2, 3, 2, 6));
-        assertEquals(10, Yatzy.twos(2, 2, 2, 2, 2));
+    public void player_score_two_points_by_each_dice_with_two() {
+        assertEquals(4, Yatzy.getDiceTwoNumbers(new DiceSet(1, 2, 3, 2, 6)));
+        assertEquals(10, Yatzy.getDiceTwoNumbers(new DiceSet(2, 2, 2, 2, 2)));
     }
 
     @Test

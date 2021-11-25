@@ -12,28 +12,12 @@ public class Yatzy {
         return diceSet.getDices().stream().mapToInt(Integer::intValue).allMatch(Integer.valueOf(diceSet.getFirstDice())::equals) ? 50 : 0;
     }
 
-    public static int ones(DiceSet diceSet) {
-        return  Long.valueOf(diceSet.getDices().stream().mapToInt(Integer::intValue).filter(e -> e == 1).count()).intValue();
+    public static int getDiceOneNumber(DiceSet diceSet) {
+        return Long.valueOf(diceSet.getDices().stream().mapToInt(Integer::intValue).filter(e -> e == 1).count()).intValue();
     }
 
-    public static int twos(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 2) {
-            sum += 2;
-        }
-        if (d2 == 2) {
-            sum += 2;
-        }
-        if (d3 == 2) {
-            sum += 2;
-        }
-        if (d4 == 2) {
-            sum += 2;
-        }
-        if (d5 == 2) {
-            sum += 2;
-        }
-        return sum;
+    public static int getDiceTwoNumbers(DiceSet diceSet) {
+        return Long.valueOf(diceSet.getDices().stream().mapToInt(Integer::intValue).filter(e -> e == 2).count()).intValue() * 2;
     }
 
     public static int threes(int d1, int d2, int d3, int d4, int d5) {
