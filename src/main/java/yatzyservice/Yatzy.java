@@ -9,14 +9,14 @@ public class Yatzy {
     }
 
     public static int yatzy(DiceSet diceSet) {
-        int[] counts = new int[6];
-        for (int die : diceSet.getDices()) {
-            counts[die - 1]++;
-        }
-        for (int i = 0; i != 6; i++) {
-            if (counts[i] == 5) {
-                return 50;
+        boolean test = true;
+        for (int i : diceSet.getDices()) {
+            if (!diceSet.getDices().get(0).equals(i)) {
+                test = false;
             }
+        }
+        if (test) {
+            return 50;
         }
         return 0;
     }

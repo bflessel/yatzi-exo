@@ -33,8 +33,6 @@ public class YatzyTest {
         assertEquals(expected, actual);
     }
 
-
-
     @Test
     public void test_1s() {
         assertTrue(Yatzy.ones(1, 2, 3, 4, 5) == 1);
