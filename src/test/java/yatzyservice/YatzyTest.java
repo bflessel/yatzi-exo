@@ -83,8 +83,8 @@ public class YatzyTest {
 
     @Test
     public void player_should_score_all_pair_value() {
-        assertEquals(16, Yatzy.calculateDoublePairScore(3, 3, 5, 4, 5));
-        assertEquals(16, Yatzy.calculateDoublePairScore(3, 3, 5, 5, 5));
+        assertEquals(16, Yatzy.calculateDoublePairScore(new DiceSet(3, 3, 5, 4, 5)));
+        assertEquals(16, Yatzy.calculateDoublePairScore(new DiceSet(3, 3, 5, 5, 5)));
     }
 
     @Test
