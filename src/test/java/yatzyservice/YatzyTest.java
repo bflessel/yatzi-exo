@@ -97,23 +97,23 @@ public class YatzyTest {
     }
 
     @Test
-    public void four_of_a_knd() {
+    public void player_should_score_four_of_a_kind_value() {
         assertEquals(12, Yatzy.calculateForOfAKindValue(new DiceSet(3, 3, 3, 3, 5)));
         assertEquals(20, Yatzy.calculateForOfAKindValue(new DiceSet(5, 5, 5, 4, 5)));
     }
 
     @Test
-    public void smallStraight() {
-        assertEquals(15, Yatzy.smallStraight(1, 2, 3, 4, 5));
-        assertEquals(15, Yatzy.smallStraight(2, 3, 4, 5, 1));
-        assertEquals(0, Yatzy.smallStraight(1, 2, 2, 4, 5));
+    public void player_should_calculate_small_straight_value() {
+        assertEquals(15, Yatzy.calculateSmallStraightValue(new DiceSet(1, 2, 3, 4, 5)));
+        assertEquals(15, Yatzy.calculateSmallStraightValue(new DiceSet(2, 3, 4, 5, 1)));
+        assertEquals(0, Yatzy.calculateSmallStraightValue(new DiceSet(1, 2, 2, 4, 5)));
     }
 
     @Test
-    public void largeStraight() {
-        assertEquals(20, Yatzy.largeStraight(6, 2, 3, 4, 5));
-        assertEquals(20, Yatzy.largeStraight(2, 3, 4, 5, 6));
-        assertEquals(0, Yatzy.largeStraight(1, 2, 2, 4, 5));
+    public void player_should_calculate_large_straight_value() {
+        assertEquals(20, Yatzy.calculateLargeStraightValue(new DiceSet(6, 2, 3, 4, 5)));
+        assertEquals(20, Yatzy.calculateLargeStraightValue(new DiceSet(2, 3, 4, 5, 6)));
+        assertEquals(0, Yatzy.calculateLargeStraightValue(new DiceSet(1, 2, 2, 4, 5)));
     }
 
     @Test

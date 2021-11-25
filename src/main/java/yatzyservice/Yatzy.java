@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 public class Yatzy {
 
+    private static final List<Integer> SMALL_STRAIGHT = Arrays.asList(1, 2, 3, 4, 5);
+    private static final List<Integer> LARGE_STRAIGHT = Arrays.asList(2, 3, 4, 5, 6);
+
     public static int chance(DiceSet diceSet) {
         return diceSet.getDices().stream().mapToInt(Integer::intValue).sum();
     }
@@ -18,17 +21,6 @@ public class Yatzy {
 
     public static int countDice(DiceSet diceSet, int diceNumber) {
         return diceSet.getDices().stream().mapToInt(Integer::intValue).filter(e -> e == diceNumber).sum();
-    }
-
-    protected int[] dice;
-
-    public Yatzy(int d1, int d2, int d3, int d4, int _5) {
-        dice = new int[5];
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = _5;
     }
 
     public static int calculatePairScore(DiceSet diceSet) {
@@ -78,40 +70,13 @@ public class Yatzy {
     }
 
 
-    public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1 - 1] += 1;
-        tallies[d2 - 1] += 1;
-        tallies[d3 - 1] += 1;
-        tallies[d4 - 1] += 1;
-        tallies[d5 - 1] += 1;
-        if (tallies[0] == 1 &&
-            tallies[1] == 1 &&
-            tallies[2] == 1 &&
-            tallies[3] == 1 &&
-            tallies[4] == 1) {
-            return 15;
-        }
-        return 0;
+    public static int calculateSmallStraightValue(DiceSet diceSet) {
+        return diceSet.getDices().containsAll(SMALL_STRAIGHT)? 15 : 0;
     }
 
-    public static int largeStraight(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1 - 1] += 1;
-        tallies[d2 - 1] += 1;
-        tallies[d3 - 1] += 1;
-        tallies[d4 - 1] += 1;
-        tallies[d5 - 1] += 1;
-        if (tallies[1] == 1 &&
-            tallies[2] == 1 &&
-            tallies[3] == 1 &&
-            tallies[4] == 1
-            && tallies[5] == 1) {
-            return 20;
-        }
-        return 0;
+    public static int calculateLargeStraightValue(DiceSet diceSet) {
+        return diceSet.getDices().containsAll(LARGE_STRAIGHT)? 20 : 0;
+
     }
 
     public static int fullHouse(int d1, int d2, int d3, int d4, int d5) {
