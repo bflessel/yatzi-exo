@@ -18,13 +18,22 @@ public class YatzyTest {
     }
 
     @Test
-    public void player_score_50_when_all_five_dice_equals() {
+    public void player_score_50_when_yatzy_with_all_five_dice_equals() {
         int expected = 50;
         int actual = Yatzy.yatzy(new DiceSet(4, 4, 4, 4, 4));
+        int actual2 = Yatzy.yatzy(new DiceSet(6, 6, 6, 6, 6));
         assertEquals(expected, actual);
-        assertEquals(50, Yatzy.yatzy(new DiceSet(6, 6, 6, 6, 6)));
-        assertEquals(0, Yatzy.yatzy(new DiceSet(6, 6, 6, 6, 3)));
+        assertEquals(expected, actual2);
     }
+
+    @Test
+    public void player_score_0_when_yatzy_with_not_all_five_dice_equals() {
+        int expected = 0;
+        int actual = Yatzy.yatzy(new DiceSet(6, 6, 6, 6, 3));
+        assertEquals(expected, actual);
+    }
+
+
 
     @Test
     public void test_1s() {
