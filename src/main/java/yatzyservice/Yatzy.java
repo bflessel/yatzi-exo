@@ -34,7 +34,7 @@ public class Yatzy {
     public static int calculatePairScore(DiceSet diceSet) {
         Map<Integer, Long> sortedValues = getSortedValues(diceSet);
 
-        Integer pairValue = getPairValue(sortedValues, false);
+        Integer pairValue = getPairValue(sortedValues, false, 2);
         if (pairValue != null) {
             return pairValue;
         }
@@ -49,18 +49,18 @@ public class Yatzy {
 
     public static int calculateDoublePairScore(DiceSet diceSet) {
         Map<Integer, Long> sortedValues = getSortedValues(diceSet);
-        Integer pairValue = getPairValue(sortedValues, true);
+        Integer pairValue = getPairValue(sortedValues, true, 2);
         if (pairValue != null) {
             return pairValue;
         }
         return 0;
     }
 
-    private static Integer getPairValue(Map<Integer, Long> sortedValues, boolean multiple) {
+    private static Integer getPairValue(Map<Integer, Long> sortedValues, boolean multiple, int size) {
         int count = 0;
         for (Integer diceValue : sortedValues.keySet()) {
-            if (sortedValues.get(diceValue).intValue() >= 2) {
-                count += diceValue * 2;
+            if (sortedValues.get(diceValue).intValue() >= size) {
+                count += diceValue * size;
                 if (!multiple) {
                     break;
                 }
@@ -90,22 +90,13 @@ public class Yatzy {
     public static int calculateThreeOfAKindValue(DiceSet diceSet) {
         Map<Integer, Long> sortedValues = getSortedValues(diceSet);
 
-        Integer pairValue = getThreeOfAKindValue(sortedValues);
+        Integer pairValue = getPairValue(sortedValues, true,3);
         if (pairValue != null) {
             return pairValue;
         }
         return 0;
     }
 
-    private static Integer getThreeOfAKindValue(Map<Integer, Long> sortedValues) {
-        int count = 0;
-        for (Integer diceValue : sortedValues.keySet()) {
-            if (sortedValues.get(diceValue).intValue() >= 3) {
-                count += diceValue * 3;
-            }
-        }
-        return count;
-    }
 
     public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
         int[] tallies;
