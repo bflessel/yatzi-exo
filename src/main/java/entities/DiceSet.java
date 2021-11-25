@@ -21,4 +21,8 @@ public class DiceSet {
     public List<Integer> getDices() {
         return Arrays.asList(dice1,dice2,dice3,dice4,dice5);
     }
+
+    public int getFirstDice(){
+        return dice1;
+    }
 }

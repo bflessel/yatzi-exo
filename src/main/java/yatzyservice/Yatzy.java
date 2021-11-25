@@ -9,16 +9,7 @@ public class Yatzy {
     }
 
     public static int yatzy(DiceSet diceSet) {
-        boolean test = true;
-        for (int i : diceSet.getDices()) {
-            if (!diceSet.getDices().get(0).equals(i)) {
-                test = false;
-            }
-        }
-        if (test) {
-            return 50;
-        }
-        return 0;
+        return diceSet.getDices().stream().mapToInt(Integer::intValue).allMatch(Integer.valueOf(diceSet.getFirstDice())::equals) ? 50 : 0;
     }
 
     public static int ones(int d1, int d2, int d3, int d4, int d5) {
