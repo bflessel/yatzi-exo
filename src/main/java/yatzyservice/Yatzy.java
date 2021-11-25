@@ -34,20 +34,11 @@ public class Yatzy {
     public static int calculatePairScore(DiceSet diceSet) {
         Map<Integer, Long> sortedValues = getSortedValues(diceSet);
 
-        Integer pairValue = getPairValue(sortedValues);
+        Integer pairValue = getPairValue(sortedValues, false);
         if (pairValue != null) {
             return pairValue;
         }
         return 0;
-    }
-
-    private static Integer getPairValue(Map<Integer, Long> sortedValues) {
-        for(Integer diceValue : sortedValues.keySet()){
-            if(sortedValues.get(diceValue).intValue() >= 2 ){
-                return  diceValue * 2;
-            }
-        }
-        return null;
     }
 
     private static Map<Integer, Long> getSortedValues(DiceSet diceSet) {
@@ -58,25 +49,28 @@ public class Yatzy {
 
     public static int calculateDoublePairScore(DiceSet diceSet) {
         Map<Integer, Long> sortedValues = getSortedValues(diceSet);
-
-        Integer pairValue = getDoublePairValue(sortedValues);
+        Integer pairValue = getPairValue(sortedValues, true);
         if (pairValue != null) {
             return pairValue;
         }
         return 0;
     }
 
-    private static Integer getDoublePairValue(Map<Integer, Long> sortedValues) {
+    private static Integer getPairValue(Map<Integer, Long> sortedValues, boolean multiple) {
         int count = 0;
         for (Integer diceValue : sortedValues.keySet()) {
             if (sortedValues.get(diceValue).intValue() >= 2) {
                 count += diceValue * 2;
+                if (!multiple) {
+                    break;
+                }
             }
         }
         return count;
 
 
     }
+
     public static int four_of_a_kind(int _1, int _2, int d3, int d4, int d5) {
         int[] tallies;
         tallies = new int[6];
