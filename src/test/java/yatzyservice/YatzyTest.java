@@ -35,43 +35,43 @@ public class YatzyTest {
 
     @Test
     public void player_score_one_points_by_each_dice_with_one() {
-        assertEquals(1, Yatzy.getDiceOneNumber(new DiceSet(1, 2, 3, 4, 5)));
-        assertEquals(2, Yatzy.getDiceOneNumber(new DiceSet(1, 2, 1, 4, 5)));
-        assertEquals(0, Yatzy.getDiceOneNumber(new DiceSet(6, 2, 2, 4, 5)));
-        assertEquals(4, Yatzy.getDiceOneNumber(new DiceSet(1, 2, 1, 1, 1)));
+        assertEquals(1, Yatzy.countDice(new DiceSet(1, 2, 3, 4, 5), 1));
+        assertEquals(2, Yatzy.countDice(new DiceSet(1, 2, 1, 4, 5), 1));
+        assertEquals(0, Yatzy.countDice(new DiceSet(6, 2, 2, 4, 5), 1));
+        assertEquals(4, Yatzy.countDice(new DiceSet(1, 2, 1, 1, 1), 1));
     }
 
     @Test
     public void player_score_two_points_by_each_dice_with_two() {
-        assertEquals(4, Yatzy.getDiceTwoNumbers(new DiceSet(1, 2, 3, 2, 6)));
-        assertEquals(10, Yatzy.getDiceTwoNumbers(new DiceSet(2, 2, 2, 2, 2)));
+        assertEquals(4, Yatzy.countDice(new DiceSet(1, 2, 3, 2, 6), 2));
+        assertEquals(10, Yatzy.countDice(new DiceSet(2, 2, 2, 2, 2), 2));
     }
 
     @Test
-    public void test_threes() {
-        assertEquals(6, Yatzy.threes(1, 2, 3, 2, 3));
-        assertEquals(12, Yatzy.threes(2, 3, 3, 3, 3));
+    public void player_score_three_points_by_each_dice_with_three() {
+        assertEquals(6, Yatzy.countDice(new DiceSet(1, 2, 3, 2, 3), 3));
+        assertEquals(12, Yatzy.countDice(new DiceSet(2, 3, 3, 3, 3), 3));
     }
 
     @Test
-    public void fours_test() {
-        assertEquals(12, new Yatzy(4, 4, 4, 5, 5).fours());
-        assertEquals(8, new Yatzy(4, 4, 5, 5, 5).fours());
-        assertEquals(4, new Yatzy(4, 5, 5, 5, 5).fours());
+    public void player_score_four_points_by_each_dice_with_four() {
+        assertEquals(12, Yatzy.countDice(new DiceSet(4, 4, 4, 5, 5), 4));
+        assertEquals(8, Yatzy.countDice(new DiceSet(4, 4, 5, 5, 5), 4));
+        assertEquals(4, Yatzy.countDice(new DiceSet(4, 5, 5, 5, 5), 4));
     }
 
     @Test
-    public void fives() {
-        assertEquals(10, new Yatzy(4, 4, 4, 5, 5).fives());
-        assertEquals(15, new Yatzy(4, 4, 5, 5, 5).fives());
-        assertEquals(20, new Yatzy(4, 5, 5, 5, 5).fives());
+    public void player_score_five_points_by_each_dice_with_five() {
+        assertEquals(10, Yatzy.countDice(new DiceSet(4, 4, 4, 5, 5), 5));
+        assertEquals(15, Yatzy.countDice(new DiceSet(4, 4, 5, 5, 5), 5));
+        assertEquals(20, Yatzy.countDice(new DiceSet(4, 5, 5, 5, 5), 5));
     }
 
     @Test
     public void sixes_test() {
-        assertEquals(0, new Yatzy(4, 4, 4, 5, 5).sixes());
-        assertEquals(6, new Yatzy(4, 4, 6, 5, 5).sixes());
-        assertEquals(18, new Yatzy(6, 5, 6, 6, 5).sixes());
+        assertEquals(0, Yatzy.countDice(new DiceSet(4, 4, 4, 5, 5), 6));
+        assertEquals(6, Yatzy.countDice(new DiceSet(4, 4, 6, 5, 5), 6));
+        assertEquals(18, Yatzy.countDice(new DiceSet(6, 5, 6, 6, 5), 6));
     }
 
     @Test
