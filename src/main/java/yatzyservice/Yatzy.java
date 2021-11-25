@@ -2,7 +2,8 @@ package yatzyservice;
 
 import entities.DiceSet;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Yatzy {
 
@@ -16,8 +17,9 @@ public class Yatzy {
 
 
     public static int countDice(DiceSet diceSet, int diceNumber) {
-        return diceSet.getDices().stream().mapToInt(Integer::intValue).filter(e->e == diceNumber).sum();
+        return diceSet.getDices().stream().mapToInt(Integer::intValue).filter(e -> e == diceNumber).sum();
     }
+
     protected int[] dice;
 
     public Yatzy(int d1, int d2, int d3, int d4, int _5) {
@@ -29,49 +31,15 @@ public class Yatzy {
         dice[4] = _5;
     }
 
-    public int fours() {
-        int sum;
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
-                sum += 4;
-            }
-        }
-        return sum;
-    }
+    public static int calculatePairScore(DiceSet diceSet) {
+        Map<Integer, Long> sortedValues = diceSet.getDices()
+            .stream().sorted(Comparator.reverseOrder())
+            .collect(Collectors.groupingBy(element -> element, LinkedHashMap::new, Collectors.counting()));
 
-    public int fives() {
-        int s = 0;
-        int i;
-        for (i = 0; i < dice.length; i++) {
-            if (dice[i] == 5) {
-                s = s + 5;
-            }
-        }
-        return s;
-    }
-
-    public int sixes() {
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++) {
-            if (dice[at] == 6) {
-                sum = sum + 6;
-            }
-        }
-        return sum;
-    }
-
-    public static int score_pair(int d1, int d2, int d3, int d4, int d5) {
-        int[] counts = new int[6];
-        counts[d1 - 1]++;
-        counts[d2 - 1]++;
-        counts[d3 - 1]++;
-        counts[d4 - 1]++;
-        counts[d5 - 1]++;
-        int at;
-        for (at = 0; at != 6; at++) {
-            if (counts[6 - at - 1] >= 2) {
-                return (6 - at) * 2;
+        for(Integer value1 : sortedValues.keySet()){
+            int numberOfTime = sortedValues.get(value1).intValue();
+            if(numberOfTime >= 2 ){
+                return  value1 * 2;
             }
         }
         return 0;

@@ -68,7 +68,7 @@ public class YatzyTest {
     }
 
     @Test
-    public void sixes_test() {
+    public void player_score_six_points_by_each_dice_with_six() {
         assertEquals(0, Yatzy.countDice(new DiceSet(4, 4, 4, 5, 5), 6));
         assertEquals(6, Yatzy.countDice(new DiceSet(4, 4, 6, 5, 5), 6));
         assertEquals(18, Yatzy.countDice(new DiceSet(6, 5, 6, 6, 5), 6));
@@ -76,9 +76,9 @@ public class YatzyTest {
 
     @Test
     public void one_pair() {
-        assertEquals(6, Yatzy.score_pair(3, 4, 3, 5, 6));
-        assertEquals(10, Yatzy.score_pair(5, 3, 3, 3, 5));
-        assertEquals(12, Yatzy.score_pair(5, 3, 6, 6, 5));
+        assertEquals(6, Yatzy.calculatePairScore(new DiceSet(3, 4, 3, 5, 6)));
+        assertEquals(10, Yatzy.calculatePairScore(new DiceSet(5, 3, 3, 3, 5)));
+        assertEquals(12, Yatzy.calculatePairScore(new DiceSet(5, 3, 6, 6, 5)));
     }
 
     @Test
