@@ -32,20 +32,31 @@ public class Yatzy {
     }
 
     public static int calculatePairScore(DiceSet diceSet) {
-        Map<Integer, Long> sortedValues = diceSet.getDices()
-            .stream().sorted(Comparator.reverseOrder())
-            .collect(Collectors.groupingBy(element -> element, LinkedHashMap::new, Collectors.counting()));
+        Map<Integer, Long> sortedValues = getSortedValues(diceSet);
 
-        for(Integer value1 : sortedValues.keySet()){
-            int numberOfTime = sortedValues.get(value1).intValue();
-            if(numberOfTime >= 2 ){
-                return  value1 * 2;
-            }
+        Integer pairValue = getPairValue(sortedValues);
+        if (pairValue != null) {
+            return pairValue;
         }
         return 0;
     }
 
-    public static int two_pair(int d1, int d2, int d3, int d4, int d5) {
+    private static Integer getPairValue(Map<Integer, Long> sortedValues) {
+        for(Integer diceValue : sortedValues.keySet()){
+            if(sortedValues.get(diceValue).intValue() >= 2 ){
+                return  diceValue * 2;
+            }
+        }
+        return null;
+    }
+
+    private static Map<Integer, Long> getSortedValues(DiceSet diceSet) {
+        return diceSet.getDices()
+            .stream().sorted(Comparator.reverseOrder())
+            .collect(Collectors.groupingBy(element -> element, LinkedHashMap::new, Collectors.counting()));
+    }
+
+    public static int calculateDoublePairScore(int d1, int d2, int d3, int d4, int d5) {
         int[] counts = new int[6];
         counts[d1 - 1]++;
         counts[d2 - 1]++;
