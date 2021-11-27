@@ -117,8 +117,8 @@ public class YatzyTest {
     }
 
     @Test
-    public void fullHouse() {
-        assertEquals(18, Yatzy.fullHouse(6, 2, 2, 2, 6));
-        assertEquals(0, Yatzy.fullHouse(2, 3, 4, 5, 6));
+    public void player_should_calculate_full_house_value() {
+        assertEquals(18, Yatzy.fullHouse(new DiceSet(6, 2, 2, 2, 6)));
+        assertEquals(0, Yatzy.fullHouse(new DiceSet(2, 3, 4, 5, 6)));
     }
 }

@@ -24,7 +24,7 @@ public class Yatzy {
     }
 
     public static int calculatePairScore(DiceSet diceSet) {
-        return calculateAllRepetedValues(diceSet, false, 2);
+        return calculateAllRepeatedValues(diceSet, false, 2);
     }
 
     private static Map<Integer, Long> getSortedValues(DiceSet diceSet) {
@@ -34,19 +34,19 @@ public class Yatzy {
     }
 
     public static int calculateDoublePairScore(DiceSet diceSet) {
-        return calculateAllRepetedValues(diceSet, true, 2);
+        return calculateAllRepeatedValues(diceSet, true, 2);
     }
 
-    private static int calculateAllRepetedValues(DiceSet diceSet, boolean multiples, int size) {
+    private static int calculateAllRepeatedValues(DiceSet diceSet, boolean multiples, int size) {
         Map<Integer, Long> sortedValues = getSortedValues(diceSet);
-        Integer pairValue = getRepetedValues(sortedValues, multiples, size);
+        Integer pairValue = getRepeatedValues(sortedValues, multiples, size);
         if (pairValue != null) {
             return pairValue;
         }
         return 0;
     }
 
-    private static Integer getRepetedValues(Map<Integer, Long> sortedValues, boolean multiple, int size) {
+    private static Integer getRepeatedValues(Map<Integer, Long> sortedValues, boolean multiple, int size) {
         int count = 0;
         for (Integer diceValue : sortedValues.keySet()) {
             if (sortedValues.get(diceValue).intValue() >= size) {
@@ -62,58 +62,38 @@ public class Yatzy {
     }
 
     public static int calculateForOfAKindValue(DiceSet diceSet) {
-        return calculateAllRepetedValues(diceSet, true, 4);
+        return calculateAllRepeatedValues(diceSet, true, 4);
     }
 
     public static int calculateThreeOfAKindValue(DiceSet diceSet) {
-        return calculateAllRepetedValues(diceSet, true, 3);
+        return calculateAllRepeatedValues(diceSet, true, 3);
     }
 
 
     public static int calculateSmallStraightValue(DiceSet diceSet) {
-        return diceSet.getDices().containsAll(SMALL_STRAIGHT)? 15 : 0;
+        return diceSet.getDices().containsAll(SMALL_STRAIGHT) ? 15 : 0;
     }
 
     public static int calculateLargeStraightValue(DiceSet diceSet) {
-        return diceSet.getDices().containsAll(LARGE_STRAIGHT)? 20 : 0;
+        return diceSet.getDices().containsAll(LARGE_STRAIGHT) ? 20 : 0;
 
     }
 
-    public static int fullHouse(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        boolean _2 = false;
-        int i;
-        int _2_at = 0;
-        boolean _3 = false;
-        int _3_at = 0;
-
-
-        tallies = new int[6];
-        tallies[d1 - 1] += 1;
-        tallies[d2 - 1] += 1;
-        tallies[d3 - 1] += 1;
-        tallies[d4 - 1] += 1;
-        tallies[d5 - 1] += 1;
-
-        for (i = 0; i != 6; i += 1) {
-            if (tallies[i] == 2) {
-                _2 = true;
-                _2_at = i + 1;
-            }
+    public static int fullHouse(DiceSet diceSet) {
+        Map<Integer, Long> sortedValues = getSortedValues(diceSet);
+        List<Long> keys = new ArrayList<>(sortedValues.values());
+        if (isFullHouse(keys)) {
+            return sortedValues.keySet().stream().reduce(0, (total, value) -> increaseTotal(sortedValues, total, value));
         }
+        return 0;
+    }
 
-        for (i = 0; i != 6; i += 1) {
-            if (tallies[i] == 3) {
-                _3 = true;
-                _3_at = i + 1;
-            }
-        }
+    private static boolean isFullHouse(List<Long> keys) {
+        return (keys.get(0) == 2 && keys.get(1) == 3) || (keys.get(0) == 3 && keys.get(1) == 2);
+    }
 
-        if (_2 && _3) {
-            return _2_at * 2 + _3_at * 3;
-        } else {
-            return 0;
-        }
+    private static int increaseTotal(Map<Integer, Long> sortedValues, Integer total, Integer value) {
+        return total + (sortedValues.get(value).intValue() * value);
     }
 }
 
