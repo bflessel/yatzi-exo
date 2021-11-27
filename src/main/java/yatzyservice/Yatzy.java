@@ -18,7 +18,6 @@ public class Yatzy {
         return diceSet.getDices().stream().mapToInt(Integer::intValue).allMatch(Integer.valueOf(diceSet.getFirstDice())::equals) ? 50 : 0;
     }
 
-
     public static int countDice(DiceSet diceSet, int diceNumber) {
         return diceSet.getDices().stream().mapToInt(Integer::intValue).filter(e -> e == diceNumber).sum();
     }
@@ -40,25 +39,16 @@ public class Yatzy {
     private static int calculateAllRepeatedValues(DiceSet diceSet, boolean multiples, int size) {
         Map<Integer, Long> sortedValues = getSortedValues(diceSet);
         Integer pairValue = getRepeatedValues(sortedValues, multiples, size);
-        if (pairValue != null) {
-            return pairValue;
-        }
-        return 0;
+        return pairValue != null ? pairValue : Integer.valueOf(0);
     }
 
     private static Integer getRepeatedValues(Map<Integer, Long> sortedValues, boolean multiple, int size) {
-        int count = 0;
-        for (Integer diceValue : sortedValues.keySet()) {
-            if (sortedValues.get(diceValue).intValue() >= size) {
-                count += diceValue * size;
-                if (!multiple) {
-                    break;
-                }
-            }
+
+        if (!multiple) {
+            return sortedValues.keySet().stream().filter(e -> sortedValues.get(e).intValue() >= size).findFirst().stream().reduce(0, (total, diceValue) -> total + diceValue * size);
+        } else {
+            return sortedValues.keySet().stream().filter(e -> sortedValues.get(e).intValue() >= size).reduce(0, (total, diceValue) -> total + diceValue * size);
         }
-        return count;
-
-
     }
 
     public static int calculateForOfAKindValue(DiceSet diceSet) {
