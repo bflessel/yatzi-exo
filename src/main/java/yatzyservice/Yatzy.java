@@ -18,7 +18,7 @@ public class Yatzy {
         return diceSet.getDices().stream().mapToInt(Integer::intValue).allMatch(Integer.valueOf(diceSet.getFirstDice())::equals) ? 50 : 0;
     }
 
-    public static int getNumberOfAKindScore(DiceSet diceSet, int diceNumber) {
+    public static int getDiceOccurences(DiceSet diceSet, int diceNumber) {
 
         return diceSet.getDices().stream().mapToInt(Integer::intValue).filter(e -> e == diceNumber).sum();
     }
