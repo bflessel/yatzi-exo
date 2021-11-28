@@ -13,15 +13,16 @@ public class DiceSet {
         this.dices.addAll(Arrays.asList(dice1, dice2, dice3, dice4, dice5));
     }
 
-    public int getChanceScore() {
+    public Integer getChanceScore() {
         return dices.stream().mapToInt(Integer::intValue).sum();
     }
 
-    public int getYatzyScore() {
-        return dices.stream().mapToInt(Integer::intValue).distinct().count() == 1 ? 50 : 0;
+    public Long getYatzyScore() {
+
+        return dices.stream().mapToInt(Integer::intValue).distinct().count() ;
     }
 
-    public int getDiceOccurences(int diceNumber) {
+    public Integer getDicesSum(int diceNumber) {
         return dices.stream().mapToInt(Integer::intValue).filter(e -> e == diceNumber).sum();
     }
 

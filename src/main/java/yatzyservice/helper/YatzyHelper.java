@@ -8,14 +8,14 @@ public class YatzyHelper {
     }
 
     public static boolean isFullHouse(List<Long> keys) {
-        return (keys.get(0) == 2 && keys.get(1) == 3) || (keys.get(0) == 3 && keys.get(1) == 2);
+        return (keys.get(0) == 2 && keys.get(1) == 3);
     }
 
-    public static int increaseTotal(Map<Integer, Long> sortedValues, Integer total, Integer value) {
+    public static Integer increaseTotal(Map<Integer, Long> sortedValues, Integer total, Integer value) {
         return total + (sortedValues.get(value).intValue() * value);
     }
 
-    public static int calculateAllRepeatedValues(Map<Integer, Long> sortedValues, boolean multiples, int size) {
+    public static Integer calculateAllRepeatedValues(Map<Integer, Long> sortedValues, boolean multiples, int size) {
         Integer pairValue = getRepeatedValues(sortedValues, multiples, size);
         return pairValue != null ? pairValue : Integer.valueOf(0);
     }

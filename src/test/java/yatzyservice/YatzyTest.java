@@ -35,97 +35,105 @@ public class YatzyTest {
 
     @Test
     public void player_should_score_one_points_by_each_dice_with_DiceOccuences_at_1() {
-        assertEquals(1, Yatzy.getDiceOccurences(new DiceSet(1, 2, 3, 4, 5), 1));
-        assertEquals(2, Yatzy.getDiceOccurences(new DiceSet(1, 2, 1, 4, 5), 1));
-        assertEquals(0, Yatzy.getDiceOccurences(new DiceSet(6, 2, 2, 4, 5), 1));
-        assertEquals(4, Yatzy.getDiceOccurences(new DiceSet(1, 2, 1, 1, 1), 1));
+        assertEquals(1, Yatzy.calculateNumbersScore(new DiceSet(1, 2, 3, 4, 5), 1).intValue());
+        assertEquals(2, Yatzy.calculateNumbersScore(new DiceSet(1, 2, 1, 4, 5), 1).intValue());
+        assertEquals(0, Yatzy.calculateNumbersScore(new DiceSet(6, 2, 2, 4, 5), 1).intValue());
+        assertEquals(4, Yatzy.calculateNumbersScore(new DiceSet(1, 2, 1, 1, 1), 1).intValue());
     }
 
     @Test
     public void player_should_score_one_points_by_each_dice_with_DiceOccuences_at_2() {
-        assertEquals(4, Yatzy.getDiceOccurences(new DiceSet(1, 2, 3, 2, 6), 2));
-        assertEquals(10, Yatzy.getDiceOccurences(new DiceSet(2, 2, 2, 2, 2), 2));
+        assertEquals(4, Yatzy.calculateNumbersScore(new DiceSet(1, 2, 3, 2, 6), 2).intValue());
+        assertEquals(10, Yatzy.calculateNumbersScore(new DiceSet(2, 2, 2, 2, 2), 2).intValue());
+        assertEquals(0, Yatzy.calculateNumbersScore(new DiceSet(6, 5, 3, 1, 4), 2).intValue());
+
     }
 
     @Test
     public void player_should_score_one_points_by_each_dice_with_DiceOccuences_at_3() {
-        assertEquals(6, Yatzy.getDiceOccurences(new DiceSet(1, 2, 3, 2, 3), 3));
-        assertEquals(12, Yatzy.getDiceOccurences(new DiceSet(2, 3, 3, 3, 3), 3));
+        assertEquals(6, Yatzy.calculateNumbersScore(new DiceSet(1, 2, 3, 2, 3), 3).intValue());
+        assertEquals(12, Yatzy.calculateNumbersScore(new DiceSet(2, 3, 3, 3, 3), 3).intValue());
+        assertEquals(0, Yatzy.calculateNumbersScore(new DiceSet(6, 5, 4, 1, 2), 3).intValue());
+
     }
 
     @Test
     public void player_should_score_one_points_by_each_dice_with_DiceOccuences_at_4() {
-        assertEquals(12, Yatzy.getDiceOccurences(new DiceSet(4, 4, 4, 5, 5), 4));
-        assertEquals(8, Yatzy.getDiceOccurences(new DiceSet(4, 4, 5, 5, 5), 4));
-        assertEquals(4, Yatzy.getDiceOccurences(new DiceSet(4, 5, 5, 5, 5), 4));
+        assertEquals(12, Yatzy.calculateNumbersScore(new DiceSet(4, 4, 4, 5, 5), 4).intValue());
+        assertEquals(8, Yatzy.calculateNumbersScore(new DiceSet(4, 4, 5, 5, 5), 4).intValue());
+        assertEquals(4, Yatzy.calculateNumbersScore(new DiceSet(4, 5, 5, 5, 5), 4).intValue());
+        assertEquals(0, Yatzy.calculateNumbersScore(new DiceSet(6, 5, 3, 1, 2), 4).intValue());
+
     }
 
     @Test
     public void player_should_score_one_points_by_each_dice_with_DiceOccuences_at_5() {
-        assertEquals(10, Yatzy.getDiceOccurences(new DiceSet(4, 4, 4, 5, 5), 5));
-        assertEquals(15, Yatzy.getDiceOccurences(new DiceSet(4, 4, 5, 5, 5), 5));
-        assertEquals(20, Yatzy.getDiceOccurences(new DiceSet(4, 5, 5, 5, 5), 5));
+        assertEquals(10, Yatzy.calculateNumbersScore(new DiceSet(4, 4, 4, 5, 5), 5).intValue());
+        assertEquals(15, Yatzy.calculateNumbersScore(new DiceSet(4, 4, 5, 5, 5), 5).intValue());
+        assertEquals(20, Yatzy.calculateNumbersScore(new DiceSet(4, 5, 5, 5, 5), 5).intValue());
+        assertEquals(0, Yatzy.calculateNumbersScore(new DiceSet(4, 4, 3, 1, 2), 5).intValue());
+
     }
 
     @Test
     public void player_should_score_one_points_by_each_dice_with_DiceOccuences_at_6() {
-        assertEquals(0, Yatzy.getDiceOccurences(new DiceSet(4, 4, 4, 5, 5), 6));
-        assertEquals(6, Yatzy.getDiceOccurences(new DiceSet(4, 4, 6, 5, 5), 6));
-        assertEquals(18, Yatzy.getDiceOccurences(new DiceSet(6, 5, 6, 6, 5), 6));
+        assertEquals(0, Yatzy.calculateNumbersScore(new DiceSet(4, 4, 4, 5, 5), 6).intValue());
+        assertEquals(6, Yatzy.calculateNumbersScore(new DiceSet(4, 4, 6, 5, 5), 6).intValue());
+        assertEquals(18, Yatzy.calculateNumbersScore(new DiceSet(6, 5, 6, 6, 5), 6).intValue());
     }
 
     @Test
     public void player_should_score_higher_pair_value_when_calculate__pair_score() {
-        assertEquals(6, Yatzy.calculatePairScore(new DiceSet(3, 4, 3, 5, 6)));
-        assertEquals(10, Yatzy.calculatePairScore(new DiceSet(5, 3, 3, 3, 5)));
-        assertEquals(12, Yatzy.calculatePairScore(new DiceSet(5, 3, 6, 6, 5)));
-        assertEquals(0, Yatzy.calculatePairScore(new DiceSet(1, 2, 3, 4, 5)));
+        assertEquals(6, Yatzy.calculatePairScore(new DiceSet(3, 4, 3, 5, 6)).intValue());
+        assertEquals(10, Yatzy.calculatePairScore(new DiceSet(5, 3, 3, 3, 5)).intValue());
+        assertEquals(12, Yatzy.calculatePairScore(new DiceSet(5, 3, 6, 6, 5)).intValue());
+        assertEquals(0, Yatzy.calculatePairScore(new DiceSet(1, 2, 3, 4, 5)).intValue());
     }
 
     @Test
     public void player_should_score_all_pair_value_when_calculate_double_pair_score() {
-        assertEquals(16, Yatzy.calculateDoublePairScore(new DiceSet(3, 3, 5, 4, 5)));
-        assertEquals(16, Yatzy.calculateDoublePairScore(new DiceSet(3, 3, 5, 5, 5)));
-        assertEquals(0, Yatzy.calculateDoublePairScore(new DiceSet(1, 2, 3, 4, 5)));
+        assertEquals(16, Yatzy.calculateDoublePairScore(new DiceSet(3, 3, 5, 4, 5)).intValue());
+        assertEquals(16, Yatzy.calculateDoublePairScore(new DiceSet(3, 3, 5, 5, 5)).intValue());
+        assertEquals(0, Yatzy.calculateDoublePairScore(new DiceSet(1, 2, 3, 4, 5)).intValue());
     }
 
     @Test
     public void player_should_score_three_same_dice_value_score_when_calculate_Three_of_a_kind_Score() {
-        assertEquals(9, Yatzy.calculateThreeOfAKindScore(new DiceSet(3, 3, 3, 4, 5)));
-        assertEquals(15, Yatzy.calculateThreeOfAKindScore(new DiceSet(5, 3, 5, 4, 5)));
-        assertEquals(9, Yatzy.calculateThreeOfAKindScore(new DiceSet(3, 3, 3, 3, 5)));
-        assertEquals(9, Yatzy.calculateThreeOfAKindScore(new DiceSet(3, 3, 3, 3, 3)));
-        assertEquals(0, Yatzy.calculateThreeOfAKindScore(new DiceSet(1, 2, 3, 4, 5)));
+        assertEquals(9, Yatzy.calculateThreeOfAKindScore(new DiceSet(3, 3, 3, 4, 5)).intValue());
+        assertEquals(15, Yatzy.calculateThreeOfAKindScore(new DiceSet(5, 3, 5, 4, 5)).intValue());
+        assertEquals(9, Yatzy.calculateThreeOfAKindScore(new DiceSet(3, 3, 3, 3, 5)).intValue());
+        assertEquals(9, Yatzy.calculateThreeOfAKindScore(new DiceSet(3, 3, 3, 3, 3)).intValue());
+        assertEquals(0, Yatzy.calculateThreeOfAKindScore(new DiceSet(1, 2, 3, 4, 5)).intValue());
     }
 
     @Test
     public void player_should_score_four_same_dice_value_score_when_calculate_Four_of_a_kind_Score() {
-        assertEquals(12, Yatzy.calculateFourOfAKindScore(new DiceSet(3, 3, 3, 3, 5)));
-        assertEquals(20, Yatzy.calculateFourOfAKindScore(new DiceSet(5, 5, 5, 4, 5)));
-        assertEquals(0, Yatzy.calculateFourOfAKindScore(new DiceSet(1, 2, 3, 4, 5)));
+        assertEquals(12, Yatzy.calculateFourOfAKindScore(new DiceSet(3, 3, 3, 3, 5)).intValue());
+        assertEquals(20, Yatzy.calculateFourOfAKindScore(new DiceSet(5, 5, 5, 4, 5)).intValue());
+        assertEquals(0, Yatzy.calculateFourOfAKindScore(new DiceSet(1, 2, 3, 4, 5)).intValue());
 
     }
 
     @Test
     public void player_should_calculate_small_straight_score() {
-        assertEquals(15, Yatzy.calculateSmallStraightScore(new DiceSet(1, 2, 3, 4, 5)));
-        assertEquals(15, Yatzy.calculateSmallStraightScore(new DiceSet(2, 3, 4, 5, 1)));
-        assertEquals(0, Yatzy.calculateSmallStraightScore(new DiceSet(1, 2, 2, 4, 5)));
-        assertEquals(0, Yatzy.calculateSmallStraightScore(new DiceSet(1, 2, 6, 4, 5)));
+        assertEquals(15, Yatzy.calculateSmallStraightScore(new DiceSet(1, 2, 3, 4, 5)).intValue());
+        assertEquals(15, Yatzy.calculateSmallStraightScore(new DiceSet(2, 3, 4, 5, 1)).intValue());
+        assertEquals(0, Yatzy.calculateSmallStraightScore(new DiceSet(1, 2, 2, 4, 5)).intValue());
+        assertEquals(0, Yatzy.calculateSmallStraightScore(new DiceSet(1, 2, 6, 4, 5)).intValue());
     }
 
     @Test
     public void player_should_calculate_large_straight_score() {
-        assertEquals(20, Yatzy.calculateLargeStraightScore(new DiceSet(6, 2, 3, 4, 5)));
-        assertEquals(20, Yatzy.calculateLargeStraightScore(new DiceSet(2, 3, 4, 5, 6)));
-        assertEquals(0, Yatzy.calculateLargeStraightScore(new DiceSet(1, 2, 2, 4, 5)));
-        assertEquals(0, Yatzy.calculateLargeStraightScore(new DiceSet(1, 2, 6, 4, 5)));
+        assertEquals(20, Yatzy.calculateLargeStraightScore(new DiceSet(6, 2, 3, 4, 5)).intValue());
+        assertEquals(20, Yatzy.calculateLargeStraightScore(new DiceSet(2, 3, 4, 5, 6)).intValue());
+        assertEquals(0, Yatzy.calculateLargeStraightScore(new DiceSet(1, 2, 2, 4, 5)).intValue());
+        assertEquals(0, Yatzy.calculateLargeStraightScore(new DiceSet(1, 2, 6, 4, 5)).intValue());
     }
 
     @Test
     public void player_should_calculate_full_house_score() {
-        assertEquals(18, Yatzy.fullHouse(new DiceSet(6, 2, 2, 2, 6)));
-        assertEquals(0, Yatzy.fullHouse(new DiceSet(2, 3, 4, 5, 6)));
-        assertEquals(0, Yatzy.fullHouse(new DiceSet(2, 2, 6, 5, 6)));
+        assertEquals(18, Yatzy.calculateFUllHouseScore(new DiceSet(6, 2, 2, 2, 6)).intValue());
+        assertEquals(0, Yatzy.calculateFUllHouseScore(new DiceSet(2, 3, 4, 5, 6)).intValue());
+        assertEquals(0, Yatzy.calculateFUllHouseScore(new DiceSet(2, 2, 6, 5, 6)).intValue());
     }
 }
