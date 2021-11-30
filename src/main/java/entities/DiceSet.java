@@ -13,18 +13,17 @@ public class DiceSet {
         this.dices.addAll(Arrays.asList(dice1, dice2, dice3, dice4, dice5));
     }
 
-    public Integer getChanceScore() {
-        return dices.stream().mapToInt(Integer::intValue).sum();
+    public static DiceSet of(Integer dice1, Integer dice2, Integer dice3, Integer dice4, Integer dice5){
+        return new DiceSet(dice1, dice2, dice3, dice4, dice5);
     }
 
-    public Long getYatzyScore() {
-
-        return dices.stream().mapToInt(Integer::intValue).distinct().count() ;
+    public  List<Integer> getDices() {
+        return Collections.unmodifiableList(dices);
     }
 
-    public Integer getDicesSum(int diceNumber) {
-        return dices.stream().mapToInt(Integer::intValue).filter(e -> e == diceNumber).sum();
-    }
+
+
+
 
     public Map<Integer, Long> getSortedValues() {
         return dices.stream().sorted(Comparator.reverseOrder())
